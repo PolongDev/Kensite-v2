@@ -1,0 +1,280 @@
+<!--
+//  
+//  d888888b  d888888b  d888888b  d888888b
+//  88    8D  88    88  88    8D  88    88
+//  88ooooC   88    88  88ooooC   88    88
+//  88    8D  88    88  88    8D  88    88
+//  Y888888P  Y888888P  Y888888P  Y888888P
+//  
+//  SITE    : https://geesite.onrender.com
+//  OWNER   : Greegmon
+//  FACEBOOK: https://facebook.com/greegmon.1
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NGL SPAMMER</title>
+<style>
+a{text-decoration: none}
+ul{list-style-type: none}
+*{padding: 0;margin: 0;box-sizing: border-box;font-family: Arial, sans-serif}
+/*========= CONFIG =======*/
+:root{
+	--body: #404258;
+	--header: #474E68;
+	--error: #F72121;
+	--success: #0FD11E;
+	--white: #E6EDE7;
+	--user: #D424EE;
+}
+/*======== /CONFIG ========*/
+body{
+	background: var(--body);
+}
+
+/*========= HEADER ======≠*/
+header{
+	background: var(--header);
+	padding: 11px 12px;
+	border-bottom: 2px solid #5E6078;
+}
+header h1{
+	font-size: 25px;
+	background: linear-gradient(125deg, #00B9FF, #00FF5B);
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+/*======== /HEADER =======*/
+main{
+	display: flex;
+	flex-direction: row;
+	background: none;
+	gap: 20px;
+	padding: 20px;
+}
+
+/* ARTICLE 1 */
+#art1{
+	background: #404252;
+	box-shadow: 0 0 20px #6E6F7E;
+	width: 360px;
+	border-radius: 10px;
+	padding: 12px;
+}
+#art1 .form{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 15px 0;
+}
+.form div{
+	display: flex;
+	flex-direction: column;
+	padding: 0 20px;
+}
+.form div input{
+	padding: 8px;
+	font-size: 16px;
+	border-radius: 5px;
+	outline: none;
+	border: 1px solid #13CF73;
+	background: none;
+	color: #FFFFFF;
+}
+.form textarea{
+	padding: 8px;
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	outline: none;
+	color: #FFFFFF;
+	background: none;
+	resize: none;
+	border-radius: 5px;
+	border: 1px solid #13CF73;
+}
+label{color: #E5EAE6}
+
+
+.control{
+	padding: 10px 20px;
+}.control button:nth-child(1){
+	width: 100%;
+	padding: 10px;
+	border-radius: 8px;
+	font-weight: 650;
+	color: #FFFFFF;
+	background: #0B61EA;
+	border: 1px solid #0539A4;
+	font-size: 12px;
+	transition: 0.2s
+}.control button:nth-child(1):hover{
+	background: #0D4CBA;
+}
+
+
+
+/* ARTICLE 2 */
+#art2 {
+	background: #28292D;
+	padding: 10px;
+	width: 360px;
+	max-height: 360px;
+	border-radius: 8px;
+	border: 1px solid #0DBC8A;
+	overflow: scroll;
+	display: block;
+}
+#art2 div p {
+	color: var(--white);
+}
+.number{color: #13C8E0}
+.success{color: var(--success)}
+.error{color: var(--error)}
+.user{color: var(--user);font-weight: 550}
+
+@media (max-width: 600px){
+	main{
+		align-items: center;
+		padding: 20px 0 0 0;
+		flex-direction: column;
+	}
+	#art1,#art2{
+		width: 90%;
+	}
+	#art2 div p{
+		font-size: 12px
+	}
+}
+</style>
+</head>
+<body>
+
+	<header>
+		<h1>NGL SPAMMER</h1>
+	</header>
+
+	<main>
+		<article id="art1">
+			<div class="form">
+				<div class="div-link">
+					<label for="link">NGL LINK:</label>
+					<input type="text" name="link" id="link" placeholder="https://ngl.link/example">
+				</div>
+				<div class="div-message">
+					<label for="message">MESSAGE:</label>
+					<textarea name="message" id="message" placeholder="Hello, World"></textarea>
+				</div>
+				<div class="div-amount">
+					<label for="amount">AMOUNT:</label>
+					<input type="number" id="amount" placeholder="10">
+				</div>
+			</div>
+			<div class="control">
+				<button id="btn">START</button>
+			</div>
+		</article>
+
+		<article id="art2">
+
+		</article>
+	</main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+$(document).ready(function() {
+	$('#btn').click(function() {
+		start()
+	})
+})
+// START
+function start() {
+	const link = document.getElementById('link').value;
+	const message = document.getElementById('message').value;
+	const amount = document.getElementById('amount').value;
+	const Toast = Swal.mixin({
+		toast: true,
+		position: "top-end",
+		showConfirmButton: false,
+		timer: 3000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.onmouseenter = Swal.stopTimer;
+			toast.onmouseleave = Swal.resumeTimer;
+		}
+	});
+	Toast.fire({
+		icon: "success",
+		title: "Sending your Message, Please wait"
+	});
+	let output = document.getElementById('art2');
+	output.innerHTML = '';
+	if (!link || !message || !amount) {
+		Swal.fire({
+			icon: 'error',
+			title: 'ERROR',
+			text: 'Lagyan mo yung mga input 🖕🏻'
+		})
+		return;
+	} else if (!link.includes(`https://ngl.link/`)) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Invalid link'
+		})
+		document.getElementById('link').value = '';
+		return;
+	} else if (parseInt(amount) > 50) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Too high',
+			text: 'The maximum amount is 50'
+		})
+	} else {
+		for (let i = 1; i <= parseInt(amount); i++) {
+			sendSpam(link, message);
+		}
+	}
+}
+
+// start Spamming
+async function sendSpam(link, message) {
+	let user = link.split('/')[3]
+	let output = document.getElementById('art2');
+	const Data = {
+		"link": link,
+		"message": message,
+		"amount": 1
+	}
+	try {
+		const response = await fetch(`{{ ngl }}`, {
+			method: "POST",
+			headers: { "Content-Type": 'application/json' },
+			body: JSON.stringify(Data)
+		})
+		const data = await response.json();
+		console.log(data)
+		if (data.msg === 'success') {
+			output.innerHTML += `
+				<div>
+					<p>[<span class="number"> NGL </span>] [<span class="success">SUCESS</span>] Message sent to <span class="user">${user}</span></p>
+				</div>
+			`;
+		} else {
+			output.innerHTML += `
+				<div>
+					<p>[<span class="number"> NGL </span>] [<span class="error">ERROR</span>] Message sent to <span class="user">${user}</span></p>
+				</div>
+			`;
+		}
+	} catch (err) {
+		console.error('Error:', err)
+	}
+}
+</script>
+</html>

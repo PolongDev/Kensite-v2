@@ -1,0 +1,298 @@
+<!--
+//  
+//  d888888b  d888888b  d888888b  d888888b
+//  88    8D  88    88  88    8D  88    88
+//  88ooooC   88    88  88ooooC   88    88
+//  88    8D  88    88  88    8D  88    88
+//  Y888888P  Y888888P  Y888888P  Y888888P
+//  
+//  SITE    : https://geesite.onrender.com
+//  OWNER   : Greegmon
+//  FACEBOOK: https://facebook.com/greegmon.1
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPT</title>
+  <style>
+    a{text-decoration: none}
+    ul{list-style-type: none}
+    *{padding: 0;margin: 0;box-sizing: border-box;font-family: Arial, sans-serif}
+    
+/*========= CONFIG =======*/
+:root{
+  --body: #404258;
+  --header: #474E68
+}
+/*======== /CONFIG ========*/
+body{
+  background: var(--body);
+}
+
+/*========= HEADER ======≠*/
+header{
+  background: var(--header);
+  padding: 11px 12px;
+  border-bottom: 2px solid #5E6078;
+  position: fixed;
+  width: 100%;
+}
+header h1{
+  font-size: 25px;
+  background: linear-gradient(125deg, #00B9FF, #00FF5B);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/*======== /HEADER =======*/
+
+/*========= MAIN =========*/
+article:nth-child(1){
+  background: none;
+  padding: 10px;
+  height: 100%;
+}
+.bot,.you{
+  width: 80%
+}
+ul{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  height: 100vh;
+  padding: 50px 0 55px 0;
+}
+.body{padding: 1px 7px}
+.foot{padding: 10px 5px 3px 8px;font-size: 14px;color:#8D8FA3}
+/*      --[  BOT  ]--     */
+.bot{
+  border-radius: 15px 15px 15px 1px;
+  background: #E4E4E4;
+  color: #424447;
+}
+.bot .head{
+  padding: 0 15px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #7077A1;
+  display: flex;
+  justify-content: space-between;
+}
+.bot .body pre{ 
+  white-space: pre-wrap;
+  word-break:  break-word;
+}
+
+/*      --[  YOU  ]--     */
+.you{
+  background: #1C6CE0;
+  color: #F5F5F5;
+  align-self: flex-end;
+  border-radius: 15px 15px 1px 15px;
+}
+.you .head{
+  padding: 0 15px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #DAD8D8;
+}
+
+
+/*============ INPUT ============*/
+article:nth-child(2){
+  background: rgba(255,255,255,0.2);
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  border-top: 1px solid #6B6B6B;
+}
+.input{
+  display: flex;
+  width: 100%;
+  border: 1px solid #C6C6CB;
+  border-radius: 5px;
+}
+.input input{
+  outline: none;
+  padding: 0 10px;
+  padding-right: 0;
+  flex: 1;
+  background: none;
+  color: #292A2B;
+}
+.input input::placeholder{color: #8F9194}
+.input input, .input button{
+  border: none;
+  font-size: 17px
+}
+.input button{
+  background: none;
+  color: #3D79FF;
+  padding: 5px 12px;
+  font-size: 24px;
+}
+
+
+/*======° LOADING °========*/
+#loading{
+  background: #E4E4E4;
+  color: #424447;
+  width: 70%;
+  padding: 11px 15px;
+  border-radius: 15px 15px 15px 1px;
+  border: 1px dotted #363638
+}
+
+
+@media (max-width: 700px){
+  .bot,.you,#loading{
+    width: 95%;
+  }
+}
+  </style>
+</head>
+<body>
+  
+  <header>
+    <h1>GPT CHAT</h1>
+  </header>
+  
+  
+  <main>
+    <article>
+      <ul id="messages">
+          <!-- Messages -->
+      </ul>
+    </article>
+    <article>
+      <div class="input">
+        <input type="text" placeholder="Prompt here..." id="prompt">
+        <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </article>
+  </main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  // ======== FUNCTIONS ==========
+// Time
+function getCurrentTime() {
+  const currentTime = new Date();
+  let hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+  const meridiem = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12 || 12;
+  const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+  
+  return `${hours}:${formattedMinutes}${meridiem}`
+}
+
+// Loading
+function loading() {
+  let ul = document.querySelector('ul')
+  let lop = document.getElementById('loading');
+  if (lop) {
+    lop.remove();
+  } else {
+    ul.innerHTML += `
+      <li id="loading">
+        <p><i class="fa-solid fa-circle-notch fa-spin"></i><b> Loading</b></p>
+      </li>
+    `;
+  }
+}
+//________________________________________
+function botMessage(text) {
+  loading();
+  const items = `
+      <div class="head">
+        <div class="name"><i class="fa-solid fa-robot"></i> BOT</div>
+        <div class="copy"><i class="fa-solid fa-copy" onclick="clipboard(this)"></i></div>
+      </div>
+      
+      <div class="body">
+        <pre><code>${text}</code></pre>
+      </div>
+      <div class="foot">
+        <small>${getCurrentTime()}</small>
+      </div>
+    `;
+  
+  let div = document.querySelector('#messages');
+  let myBox = document.createElement('li');
+  myBox.classList.add('bot');
+  myBox.innerHTML = items;
+  div.appendChild(myBox);
+  div.scrollTop = div.scrollHeight;
+}
+
+function sendMessage(){
+  let input = document.getElementById('prompt');
+  let text = input.value.trim();
+  if (!text) {
+    return;
+  }
+  const items = `
+    <div class="head">
+      <div class="name"><i class="fa-solid fa-user"></i> YOU</div>
+    </div>
+    <div class="body">
+      <p>${text}</p>
+    </div>
+    <div class="foot">
+      <small>12:16pm</small>
+    </div>
+  `
+  let div = document.querySelector('#messages');
+  let myBox = document.createElement('li');
+  myBox.classList.add('you');
+  myBox.innerHTML = items;
+  div.appendChild(myBox);
+
+  input.value = '';
+
+  fetchGpt(text);
+  div.scrollTop = div.scrollHeight;
+}
+
+//________________________________________
+// fetch API
+async function fetchGpt(prompt){
+  try {
+    loading();
+    let text = encodeURIComponent(prompt);
+		const uid = Math.floor(Math.random() * 1000)
+    const res = await fetch(`/api/gpt?query=${text}&uid=${uid}`);
+    const data = await res.json()
+
+    response = data.gpt4;
+    response = response.replace(/\n/g, '<br>');
+    botMessage(response)
+
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// Copy Clipboard
+function clipboard(button) {
+  const columnBElement = button.parentElement.parentElement.nextElementSibling.querySelector('.body pre code');
+  const text = columnBElement.innerText;
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      console.log('Copy clipboard')
+    })
+    .catch(err => {
+      console.error('Error', err);
+    })
+}
+</script>
+</html>

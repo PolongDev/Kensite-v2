@@ -1,0 +1,284 @@
+<!--
+//  
+//  d888888b  d888888b  d888888b  d888888b
+//  88    8D  88    88  88    8D  88    88
+//  88ooooC   88    88  88ooooC   88    88
+//  88    8D  88    88  88    8D  88    88
+//  Y888888P  Y888888P  Y888888P  Y888888P
+//  
+//  SITE    : https://geesite.onrender.com
+//  OWNER   : Greegmon
+//  FACEBOOK: https://facebook.com/greegmon.1
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Geesite</title>
+  <style>
+    a{text-decoration: none}
+    ul{list-style-type: none}
+    *{padding: 0;margin: 0;box-sizing: border-box;font-family: Arial, sans-serif}
+    /* CONFIG */
+body{background: #404258;margin: 0 100px;}
+:root {
+  --htext: #2D72D8;
+  --text: #018CF6;
+  --white: #F1F1F1;
+  --gray: #7E8182;
+}
+
+/* BUTTON */
+.btn-main {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.bar1, .bar2, .bar3 {
+  width: 30px;
+  height: 4px;
+  background-cbar1olor: #333;
+  margin: 7px 0;
+  transition: 0.2s;
+  color: var(--white);
+  background: var(--white);
+}
+
+.change .bar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
+
+
+/* HEADER */
+header .H-top{
+  background: #474E68;
+  display: flex;
+  padding: 12px 17px;
+  justify-content: space-between;
+  align-items: center;
+}
+header .H-top div h1{
+  font-size: 25px;
+  background: linear-gradient(125deg, #00B9FF, #00FF5B);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== NAVIGATION =====*/
+nav{
+  background: #404663;
+  overflow-x: hidden;
+  padding: 0px;
+  width: 0px;
+  /* 250px */
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  left: 0;
+  transition: 0.2s;
+}
+nav ul{
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+nav ul li{
+  background: #575970;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+nav ul li:hover{
+  border-left: 2px solid #14D6A3;
+}
+
+nav ul li span{
+  font-weight: 500;
+  background: linear-gradient(125deg,#0088FF,#10D75B);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+nav ul li i{color: #E0E1EA;margin-right: 5px}
+
+/*======= FOOTER =======*/
+footer{
+  background: #2388D5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 6px 15px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+footer div ul{
+  display: flex;
+  gap: 10px;
+}
+footer div ul li{transition: 0.2s}
+footer div ul li:hover{color: #EEF0F1}
+/*======== /FOOTER ==========*/
+
+/*========= MAIN ===========*/
+article:nth-child(1){
+  color: white;
+  display: flex;
+  gap: 5px;
+  background: #2E3236;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 95%;
+  border-radius: 10px;
+  align-items: center;
+}
+article:nth-child(1) div{padding: 10px;}
+article:nth-child(1) div:nth-child(1){
+  border-right: 2px solid #363E3A;
+  padding: 10px;
+}
+article:nth-child(1) div small{color: #9DA09E;font-size: 12px}
+article:nth-child(1) div img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid #17F685
+}
+
+article:nth-child(2){
+  background: #2E3236;
+  margin: 20px auto auto auto;
+  border-radius: 10px;
+  padding: 15px;
+  width: 95%;
+}
+article:nth-child(2) div p b{color: #FFFFFF}
+article:nth-child(2) div p span{color: #D4D4D6}
+article:nth-child(2) div p {word-wrap: break-word}
+/*======== /MAIN ============*/
+@media (max-width: 700px){
+  body{
+    margin: 0;
+  }
+}
+  </style>
+<!-- -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- -->
+</head>
+<body>
+  
+  <nav class="projects" id="nav">
+    <ul>
+      <a href="/gpt"><li><i class="fa-solid fa-robot"></i> <span>GPT</span></li><a>
+      <a href="/imgbb"><li><i class="fa-solid fa-image"></i> <span>IMAGE TO URL</span></li><a>
+      <a href="/ngl"><li><i class="fa-solid fa-square-envelope"></i> <span>NGL SPAM</span></li><a>
+      <a href="/fbDl"><li><i class="fa-solid fa-download"></i> <span>FB REELS/VIDEO DOWNLOAD</span></li><a>
+    </ul>
+  </nav>
+  
+  <header>
+    <div class="H-top">
+      <div class="H-title">
+        <h1>GEESITE</h1>
+      </div>
+      
+      <div id="menu" class="btn-main" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+  </header>
+  
+  <main>
+    <article>
+      <div>
+        <img src="https://graph.facebook.com/61558507057485/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662" alt="Greegmon">
+      </div>
+      <div>
+        <p><b>Greegmon</b></p>
+        <small>Age: 15</small><br>
+        <small>Gender: Male</small>
+      </div>
+    </article>
+    <article>
+      <div>
+        <p><b>Date: </b><span id="date-time"></span></p>
+      </div>
+      <br>
+      <div>
+        <p><b>User-agent: </b><span id="user-agent"></span></p>
+      </div>
+    </article>
+  </main>
+  
+  <footer>
+    <div>
+      <small>&copy; 2024 Greegmon. All rights reserved.</small>
+    </div>
+    <div>
+      <ul>
+        <li onclick="direct('https://facebook.com/greegmon.1')"><i class="fa-brands fa-facebook"></i></li>
+        <li onclick="direct('https://github.com/Greegmon')"><i class="fa-brands fa-github"></i></li>
+      </ul>
+    </div>
+  </footer>
+
+
+</body>
+<!-- -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- -->
+<script>
+  $(document).ready(function() {
+    $('#menu').click(function() {
+      const box = document.querySelector('.projects');
+      if (box.style.width === '270px') {
+        $("#nav").css('width', '0px');
+      } else {
+        $("#nav").css('width', '270px')
+      }
+    })
+  })
+  // Nav bar
+  function myFunction(x) {
+    x.classList.toggle("change");
+  }
+  
+  // redirect
+  function direct(link) {
+    window.open(link, '_blank')
+  }
+  
+  // -------- FUNCTIONSS ----------
+  setInterval(function() {
+    const date = new Date();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    let hour = date.getHours();
+    const minute = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    const meridiem = hour >= 12 ? 'PM' : 'AM';
+    const second = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
+  
+    hour = hour % 12 || 12;
+    let This = document.getElementById('date-time');
+    This.innerHTML = `${month}/${day}/${year} <b>|</b> ${hour}:${minute}:${second} ${meridiem}`
+  }, 1000)
+  document.getElementById('user-agent').innerHTML = navigator.userAgent
+</script>
+</html>

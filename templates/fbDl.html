@@ -1,0 +1,188 @@
+<!--
+//  
+//  d888888b  d888888b  d888888b  d888888b
+//  88    8D  88    88  88    8D  88    88
+//  88ooooC   88    88  88ooooC   88    88
+//  88    8D  88    88  88    8D  88    88
+//  Y888888P  Y888888P  Y888888P  Y888888P
+//  
+//  SITE    : https://geesite.onrender.com
+//  OWNER   : Greegmon
+//  FACEBOOK: https://facebook.com/greegmon.1
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Facebook Download</title>
+<style>
+a{text-decoration: none}
+ul{list-style-type: none}
+*{padding: 0;margin: 0;box-sizing: border-box;font-family: Arial, sans-serif}
+/*========= CONFIG =======*/
+:root{
+  --body: #404258;
+  --header: #474E68
+}
+/*======== /CONFIG ========*/
+body{
+  background: var(--body);
+}
+
+/*========= HEADER ======≠*/
+header{
+  background: var(--header);
+  padding: 11px 12px;
+  border-bottom: 2px solid #5E6078;
+}
+header h1{
+  font-size: 20px;
+  background: linear-gradient(125deg, #00B9FF, #00FF5B);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/*======== /HEADER =======*/
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+
+article{
+  background: linear-gradient(125deg,#EDF0F0,#1ADFDA);
+  width: 300px;
+  padding: 20px 30px;
+  border-radius: 10px;
+}
+article .form{
+  display: flex;
+  flex-direction: column;
+}
+input{
+  padding: 9px;
+  border: 1px solid #2A2C39;
+  outline: none;
+  border-radius: 5px
+}
+
+article .control button{
+  width: 100%;
+  padding: 8px;
+  font-weight: 450;
+  border: none;
+  background: #92E694;
+  border-radius: 5px;
+  color: #14B517;
+  transition: 0.2s
+}
+article .control button:hover{
+  background: #D0FFD1;
+}
+
+@media (max-width: 600px){
+  article{
+    width: 85%;
+  }
+}
+</style>
+</head>
+<body>
+  
+  <header>
+    <h1>DOWNLOAD FB REELS/VIDEO</h1>
+  </header>
+  
+  <main>
+    <article>
+      <div class="form">
+        <label for="link">Fb reels/video link</label>
+        <input type="text" name="link" id="link">
+      </div>
+      <br><br>
+      <div class="control">
+        <button id="btn" onclick="execute()">Download</button>
+      </div>
+    </article>
+  </main>
+  
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  async function execute() {
+    const videoUrl = document.getElementById('link').value.trim();
+    const ii = document.getElementById('link')
+  
+    if (!videoUrl) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'ERROR',
+        text: 'PLEASE PROVIDE A VALID FACEBOOK URL'
+      })
+      return;
+    }
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: "wait a few seconds"
+    });
+    try {
+      const response = await fetch(`{{ api }}?url=${encodeURIComponent(videoUrl)}`);
+      const { data } = await response.json();
+      if (!data || !data.video || !data.title) {
+        throw new Error('INVALID RESPONSE FROM THE SERVER CONTACT MARJHUN BAYLON');
+      }
+      const { video, title } = data;
+      const randomString = Math.random().toString(36).substring(7);
+      const videoResponse = await fetch(video);
+      const videoBlob = await videoResponse.blob();
+      const blobUrl = window.URL.createObjectURL(videoBlob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = `${title}_${randomString}.mp4`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+      Swal.fire({
+        icon: 'success',
+        title: 'Video downloaded'
+      })
+      ii.value = '';
+    } catch (error) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "error",
+        title: "Failed to fetch"
+      });
+      console.error(error);
+    }
+  }
+</script>
+</html>
